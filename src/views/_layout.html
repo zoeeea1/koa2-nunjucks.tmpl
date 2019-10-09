@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta id="viewport" name="viewport" content="width=device-width,height=device-height,minimum-scale=1.0,maximum-scale=1.0,initial-scale=1.0,user-scalable=no,viewport-fit=cover">
+    <!-- Set render engine for 360 browser -->
+    <meta name="renderer" content="webkit">
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta content="telephone=no" name="format-detection" />
+    <meta name="wap-font-scale" content="no">
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="/styles/default.css">
+    <link rel="stylesheet" href="/styles/select-city-modal.css">
+    <!--  styles -->
+    <style>
+        body {
+            width: 100%;
+            height: 100%;
+            background: #f7f8f9;
+            overflow-x: hidden;
+        }
+        
+        .wraper {
+            width: 100%;
+            margin: 0 auto;
+            position: relative;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .temp {
+            width: 100%;
+        }
+    </style>
+    {% block styles %} {%endblock%}
+</head>
+
+<body>
+    <div class="wraper">
+        <script>
+            (function() {
+                function ready() {
+                    var u = navigator.userAgent;
+                    var winW = document.documentElement.clientWidth;
+                    if (!!!u.match(/AppleWebKit.*Mobile.*/)) {
+                        winW = 414;
+                        document.getElementsByClassName('wraper')[0].style.width = '' + winW + 'px';
+                    }
+                    document.documentElement.style.fontSize = winW / 7.5 + 'px';
+                }
+                ready();
+                window.addEventListener("resize", ready, false);
+            })();
+        </script>
+
+        <!--  body -->
+        {% block body %} {%endblock%}
+    </div>
+
+    <script>
+        var views = {};
+        views.jsendtTime = new Date();
+    </script>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/swiper.min.js"></script>
+    <script src="/js/common.js"></script>
+    <script src="/js/default.js"></script>
+    <script src="/js/jquery.cookie.js"></script>
+    <script src="/js/jssdk.min.js"></script>
+    <script>
+        //判断是否是微信浏览器的函数
+        function isWeiXin() {
+            var ua = window.navigator.userAgent.toLowerCase();
+            if (ua.match(/MicroMessenger/i) == 'micromessenger') {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        // if (!isWeiXin()) {
+        //     $(".wraper").html('<div class="close">请在微信浏览器打开^_^<div>')
+        // }
+    </script>
+    <!--  scripts  -->
+    {% block scripts %} {%endblock%}
+</body>
+
+</html>
