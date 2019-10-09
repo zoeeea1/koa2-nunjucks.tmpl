@@ -1,3 +1,5 @@
+const http = require('../utils/http');
+
 exports.list = async(ctx, next) => {
     await ctx.render('index', { title: 'MVC' });
 }
